@@ -1,10 +1,13 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"strings"
+	"time"
+)
 
 // Go 中不允许不同类型之间的混合使用，但对常量的限制较少，因此常量可以混合使用
-// 因为 Go 不能够隐式转换，所以我们必须显示的转换变量的类型
-
+// 因为 Go 不能够隐式转换，所以我们必须显式的转换变量类型
 func main() {
 	i := 1
 	// 值类型
@@ -32,4 +35,14 @@ func main() {
 	)
 
 	fmt.Println(KB, MB, GB, TB, PB, EB)
+
+	// 仅仅是测试
+	time.Sleep(1000)
+
+	// 字符串，一个 ascii 码占一个字节，其他字符占 2~4 个字节
+	en := "ab"
+	zh := "中文"
+	fmt.Println("char length equals:", strings.Count(en, "") == strings.Count(zh, ""))
+	// len 函数其实获取的是 byte 数
+	fmt.Println("byte length equals:", len(en) == len(zh))
 }
