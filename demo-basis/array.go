@@ -20,4 +20,11 @@ func main() {
 	s = make([]int, 10, 20)
 	s = s[0:15]
 	fmt.Println(len(s))
+
+	// 切片的复制
+	copy(s, []int{1, 2, 3, 4, 5})
+	fmt.Println(s)
+	// 新增（扩容）
+	s = append(s, 9, 10, 11, 12, 13, 14)
+	fmt.Println(s)
 }
