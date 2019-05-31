@@ -2,6 +2,7 @@ package main
 
 import "fmt"
 import "reflect"
+import "runtime"
 
 func main() {
 	// 分配内存
@@ -28,6 +29,15 @@ func main() {
 	for i := 0; i < 2; i++ {
 		fmt.Println(tipe.Field(i).Tag)
 	}
+
+	// 匿名字段与组合（可以粗略的看成继承）
+	out := outer{}
+	out.name = "go"
+	out.int = 1
+	out.version = runtime.Version()
+	out.time = 123456
+
+	fmt.Println(out)
 }
 
 // 工厂方法
@@ -45,4 +55,15 @@ type person struct {
 	gender string
 	age    int
 	name   string
+}
+
+type inner struct {
+	version string
+	time    int64
+}
+
+type outer struct {
+	name string
+	int
+	inner
 }
