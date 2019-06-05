@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"runtime"
 	"time"
 )
 
@@ -11,6 +12,16 @@ func main() {
 	n := none{}
 	fmt.Println(tn.addThem())
 	n.addThem()
+
+	// 查看内存状态
+	var ms runtime.MemStats
+	runtime.ReadMemStats(&ms)
+	fmt.Printf("%d Kb\n", ms.Alloc/1024)
+
+	// 如果需要在一个对象 obj 被从内存移除前执行一些特殊操作，比如写到日志文件中，可以通过函数回调方法实现
+	runtime.SetFinalizer(&tn, func(t *twoInts) { fmt.Println("run time gc", t) })
+	runtime.GC()
+	fmt.Println("end")
 }
 
 // 接受者方法只能作用于本包内的类型
