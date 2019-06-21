@@ -30,3 +30,7 @@
 |`%v`|复数|
 |`%c`|字符|
 |`%U`|UTF8代码点|
+
+## 重要的知识点
+
+- [性能分析](https://github.com/Unknwon/the-way-to-go_ZH_CN/blob/master/eBook/13.10.md)
