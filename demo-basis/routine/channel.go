@@ -12,6 +12,9 @@ func main() {
 	go getData(ch)
 
 	time.Sleep(1e9)
+
+	// 通道的关闭：
+	// https://github.com/Unknwon/the-way-to-go_ZH_CN/blob/master/eBook/14.3.md
 }
 
 func sendData(ch chan string) {
