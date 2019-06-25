@@ -34,3 +34,15 @@
 ## 重要的知识点
 
 - [性能分析](https://github.com/Unknwon/the-way-to-go_ZH_CN/blob/master/eBook/13.10.md)
+
+## 常见问题
+
+- 永远不要使用new一个map，而是使用make一个map
+
+- 当终止缓存写入是，一定要记得调用Flush函数
+
+- 永远不要忽略错误提示，否则可能导致程序崩溃
+
+- 在并发程序中尽量不要使用全局变量或共享内存
+
+- 切片、通道和映射使用make，数组、结构体和所有值类型使用new
