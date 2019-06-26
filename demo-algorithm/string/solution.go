@@ -5,7 +5,7 @@ import (
 	"strings"
 )
 
-// LeetCode(id=451,title="根据字符出现频率排序",difficulty=medium)
+// LeetCode(id=451,title=根据字符出现频率排序,difficulty=medium)
 func frequencySort(s string) string {
 	m := make(map[string]int)
 	var has bool
