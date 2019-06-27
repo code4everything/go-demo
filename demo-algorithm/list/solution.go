@@ -4,6 +4,17 @@ import (
 	. "../leetcode"
 )
 
+// LeetCode(id=226,title=翻转二叉树,difficulty=easy)
+func invertTree(root *TreeNode) *TreeNode {
+	if root == nil {
+		return nil
+	}
+	root.Left, root.Right = root.Right, root.Left
+	invertTree(root.Left)
+	invertTree(root.Right)
+	return root
+}
+
 // LeetCode(id=111,title=二叉树的最小深度,difficulty=easy)
 func minDepth(root *TreeNode) int {
 	if root == nil {
@@ -25,10 +36,11 @@ func minDepth(root *TreeNode) int {
 	return 1 + min
 }
 
-var levels = make([][]int, 0)
+var levels [][]int
 
 // LeetCode(id=100,title=二叉树的层次遍历 II,difficulty=easy)
 func levelOrderBottom(root *TreeNode) [][]int {
+	levels = make([][]int, 0)
 	levelOrderHelper(root, 0)
 	for i, j := 0, len(levels)-1; i < j; i++ {
 		tmp := levels[i]
