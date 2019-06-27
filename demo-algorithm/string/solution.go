@@ -5,6 +5,16 @@ import (
 	"strings"
 )
 
+// LeetCode(id=58,title=最后一个单词的长度,difficulty=easy)
+func lengthOfLastWord(s string) int {
+	s = strings.Trim(s, " ")
+	arr := strings.Split(s, " ")
+	if len(arr) == 0 {
+		return 0
+	}
+	return len(arr[len(arr)-1])
+}
+
 // LeetCode(id=451,title=根据字符出现频率排序,difficulty=medium)
 func frequencySort(s string) string {
 	m := make(map[string]int)
