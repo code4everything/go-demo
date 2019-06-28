@@ -1,5 +1,22 @@
 package math
 
+var pos = []int{2, 3, 5}
+
+// LeetCode(id=263,title=丑数,difficulty=easy)
+func isUgly(num int) bool {
+	if num < 1 {
+		return false
+	}
+	for i := 0; i < 3 && num > 1; {
+		if num%pos[i] == 0 {
+			num /= pos[i]
+		} else {
+			i++
+		}
+	}
+	return num == 1
+}
+
 // LeetCode(id=258,title=各位相加,difficulty=easy)
 func addDigits(num int) int {
 	if num < 10 {
