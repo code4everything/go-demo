@@ -1,5 +1,51 @@
 package math
 
+import "strconv"
+
+// LeetCode(id=400,title=第N个数字,difficulty=easy)
+func findNthDigit(n int) int {
+	if n < 10 {
+		return n
+	}
+	var lens int
+	left := 1
+	right := n
+	for left < right {
+		mid := left + (right-left)>>1
+		if mid < 10 {
+			lens = mid
+		} else if mid < 100 {
+			lens = 9 + 2*(mid-9)
+		} else {
+			lens = 189
+			div1 := 99
+			div2 := 999
+			i := 3
+			for mid > div1 {
+				if mid <= div2 {
+					lens += (mid - div1) * i
+					break
+				} else {
+					lens += (div2 - div1) * i
+				}
+				div1 = div2
+				div2 = div2*10 + 9
+				i++
+			}
+		}
+		if lens == n {
+			return mid
+		}
+		if lens < n {
+			left = mid + 1
+		} else {
+			right = mid - 1
+		}
+	}
+	b := []byte(strconv.Itoa(left))
+	return int(b[n-lens] - '0')
+}
+
 // LeetCode(id=342,title=4的幂,difficulty=easy)
 func isPowerOfFour(num int) bool {
 	// 二进制 1010 1010 1010 1010 1010 1010 1010 1010 的十进制表示
