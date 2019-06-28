@@ -5,6 +5,36 @@ import (
 	"strings"
 )
 
+// LeetCode(id=290,title=单词规律,difficulty=easy)
+func wordPattern(pattern string, str string) bool {
+	strs := strings.Split(str, " ")
+	size := len(pattern)
+	if size != len(strs) {
+		return false
+	}
+	patternMap := make(map[byte]string, size)
+	stringMap := make(map[string]byte, size)
+	bytes := []byte(pattern)
+	for i := 0; i < size; i++ {
+		s := strs[i]
+		b := bytes[i]
+		if p, has := patternMap[b]; has {
+			// check p -> s
+			if s != p {
+				return false
+			}
+		} else {
+			// check s -> p
+			if _, has := stringMap[s]; has {
+				return false
+			}
+			stringMap[s] = b
+			patternMap[b] = s
+		}
+	}
+	return true
+}
+
 // LeetCode(id=58,title=最后一个单词的长度,difficulty=easy)
 func lengthOfLastWord(s string) int {
 	s = strings.Trim(s, " ")
