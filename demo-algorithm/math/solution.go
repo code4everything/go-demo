@@ -1,6 +1,21 @@
 package math
 
-// LeetCode(id=171,title=Excel表列序号 ,difficulty=easy)
+// LeetCode(id=231,title=2的幂,difficulty=easy)
+func isPowerOfTwo(n int) bool {
+	var cnt = 0
+	for n > 0 {
+		if n&1 == 1 {
+			if cnt == 1 {
+				return false
+			}
+			cnt++
+		}
+		n >>= 1
+	}
+	return cnt == 1
+}
+
+// LeetCode(id=171,title=Excel表列序号,difficulty=easy)
 func convertToTitle(n int) string {
 	bytes := make([]byte, 0)
 	for n > 0 {
