@@ -2,6 +2,11 @@ package math
 
 var pos = []int{2, 3, 5}
 
+// LeetCode(id=292,title=Nim 游戏,difficulty=easy)
+func canWinNim(n int) bool {
+	return n&3 != 0
+}
+
 // LeetCode(id=263,title=丑数,difficulty=easy)
 func isUgly(num int) bool {
 	if num < 1 {
