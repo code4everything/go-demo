@@ -5,6 +5,18 @@ import (
 	"strings"
 )
 
+// LeetCode(id=389,title=找不同,difficulty=easy)
+func findTheDifference(s string, t string) byte {
+	var sum1, sum2 int
+	for _, b := range s {
+		sum1 += int(b)
+	}
+	for _, b := range t {
+		sum2 += int(b)
+	}
+	return byte(sum2 - sum1)
+}
+
 // LeetCode(id=383,title=赎金信,difficulty=easy)
 func canConstruct(ransomNote string, magazine string) bool {
 	cnt := make([]int, 26)
