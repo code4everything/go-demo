@@ -1,11 +1,31 @@
 package math
 
-var pos = []int{2, 3, 5}
+// LeetCode(id=342,title=4的幂,difficulty=easy)
+func isPowerOfFour(num int) bool {
+	// 二进制 1010 1010 1010 1010 1010 1010 1010 1010 的十进制表示
+	even := 2863311530
+	if num&even != 0 {
+		return false
+	}
+	var cnt = 0
+	for num > 0 {
+		if num&1 == 1 {
+			if cnt == 1 {
+				return false
+			}
+			cnt++
+		}
+		num >>= 2
+	}
+	return cnt == 1
+}
 
 // LeetCode(id=292,title=Nim 游戏,difficulty=easy)
 func canWinNim(n int) bool {
 	return n&3 != 0
 }
+
+var pos = []int{2, 3, 5}
 
 // LeetCode(id=263,title=丑数,difficulty=easy)
 func isUgly(num int) bool {

@@ -5,6 +5,10 @@ import (
 	"testing"
 )
 
+func TestIsPowerOfFour(t *testing.T) {
+	isPowerOfFour(3)
+}
+
 func TestConvertToTitle(test *testing.T) {
 	fmt.Println("A\t", convertToTitle(1))
 	fmt.Println("AB\t", convertToTitle(28))
