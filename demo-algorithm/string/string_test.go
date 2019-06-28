@@ -5,6 +5,10 @@ import (
 	"testing"
 )
 
+func TestCanConstruct(t *testing.T) {
+	canConstruct("a", "ab")
+}
+
 func TestWordPattern(t *testing.T) {
 	fmt.Println("true\t", wordPattern("abba", "dog cat cat dog"))
 	fmt.Println("false\t", wordPattern("abba", "dog cat cat fish"))

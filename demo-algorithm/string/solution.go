@@ -5,6 +5,24 @@ import (
 	"strings"
 )
 
+// LeetCode(id=383,title=赎金信,difficulty=easy)
+func canConstruct(ransomNote string, magazine string) bool {
+	cnt := make([]int, 26)
+	bs := []byte(magazine)
+	for _, b := range bs {
+		cnt[b-97]++
+	}
+	bs = []byte(ransomNote)
+	for _, b := range bs {
+		idx := b - 97
+		if cnt[idx] == 0 {
+			return false
+		}
+		cnt[idx]--
+	}
+	return true
+}
+
 // LeetCode(id=290,title=单词规律,difficulty=easy)
 func wordPattern(pattern string, str string) bool {
 	strs := strings.Split(str, " ")
