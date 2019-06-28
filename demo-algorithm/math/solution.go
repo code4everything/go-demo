@@ -1,6 +1,8 @@
 package math
 
-import "strconv"
+import (
+	"strconv"
+)
 
 // LeetCode(id=400,title=第N个数字,difficulty=easy)
 func findNthDigit(n int) int {
@@ -34,16 +36,20 @@ func findNthDigit(n int) int {
 			}
 		}
 		if lens == n {
-			return mid
+			return mid % 10
 		}
 		if lens < n {
-			left = mid + 1
+			if left+1 == right {
+				left = right
+				break
+			}
+			left = mid
 		} else {
-			right = mid - 1
+			right = mid
 		}
 	}
 	b := []byte(strconv.Itoa(left))
-	return int(b[n-lens] - '0')
+	return int(b[n-lens-1] - '0')
 }
 
 // LeetCode(id=342,title=4的幂,difficulty=easy)
