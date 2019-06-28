@@ -2,7 +2,34 @@ package list
 
 import (
 	. "../leetcode"
+	"strconv"
 )
+
+var treePath []string
+
+// LeetCode(id=257,title=二叉树的所有路径,difficulty=easy)
+func binaryTreePaths(root *TreeNode) []string {
+	treePath = make([]string, 0)
+	if root == nil {
+		return treePath
+	}
+	pathHelper("", "", root)
+	return treePath
+}
+
+func pathHelper(pre string, sep string, node *TreeNode) {
+	str := pre + sep + strconv.Itoa(node.Val)
+	if node.Left == nil && node.Right == nil {
+		treePath = append(treePath, str)
+		return
+	}
+	if node.Left != nil {
+		pathHelper(str, "->", node.Left)
+	}
+	if node.Right != nil {
+		pathHelper(str, "->", node.Right)
+	}
+}
 
 // LeetCode(id=226,title=翻转二叉树,difficulty=easy)
 func invertTree(root *TreeNode) *TreeNode {
