@@ -1,5 +1,17 @@
 package math
 
+// LeetCode(id=258,title=各位相加,difficulty=easy)
+func addDigits(num int) int {
+	if num < 10 {
+		return num
+	}
+	mod := num % 9
+	if mod == 0 {
+		return 9
+	}
+	return mod
+}
+
 // LeetCode(id=231,title=2的幂,difficulty=easy)
 func isPowerOfTwo(n int) bool {
 	var cnt = 0
