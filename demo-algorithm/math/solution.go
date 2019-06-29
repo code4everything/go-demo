@@ -1,8 +1,49 @@
 package math
 
 import (
+	"fmt"
 	"strconv"
 )
+
+var watches []string
+
+// LeetCode(id=401,title=进制手表,difficulty=easy)
+func readBinaryWatch(num int) []string {
+	if num == 0 {
+		return []string{"0:00"}
+	}
+	watches = make([]string, 0)
+	watchHelper(num, make([]int, 10), 0)
+	return watches
+}
+
+func watchHelper(rec int, bits []int, start int) {
+	end := 10 - rec
+	for start <= end {
+		bits[start] = 1
+		if rec > 1 {
+			// 回溯遍历
+			watchHelper(rec-1, bits, start+1)
+		} else {
+			// 计算时间
+			hour := 0
+			var i uint32 = 0
+			for ; i < 4; i++ {
+				hour += bits[i] << (3 - i)
+			}
+			minute := 0
+			for ; i < 10; i++ {
+				minute += bits[i] << (9 - i)
+			}
+			if hour < 12 && minute < 60 {
+				watches = append(watches, fmt.Sprintf("%d:%0.2d", hour, minute))
+			}
+		}
+		// 选值结束，进行下一轮选值
+		bits[start] = 0
+		start++
+	}
+}
 
 // LeetCode(id=400,title=第N个数字,difficulty=easy)
 func findNthDigit(n int) int {
