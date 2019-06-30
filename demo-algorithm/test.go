@@ -13,7 +13,7 @@ func main() {
 		fmt.Print(strconv.Itoa(int(b)) + " ")
 	}
 	fmt.Println()
-	//test convert int to byte
+	// test convert int to byte
 	for i := 33; i < math.MaxInt8; i++ {
 		fmt.Print(string(byte(i)) + " ")
 	}
