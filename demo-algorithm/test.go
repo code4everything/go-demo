@@ -15,6 +15,6 @@ func main() {
 	fmt.Println()
 	//test convert int to byte
 	for i := 33; i < math.MaxInt8; i++ {
-		fmt.Print(string(byte(i)) + " ")
+		fmt.Print(string(byte(i)))
 	}
 }

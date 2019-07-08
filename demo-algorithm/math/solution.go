@@ -1,6 +1,41 @@
 package math
 
-import "strconv"
+import (
+	"sort"
+	"strconv"
+)
+
+// LeetCode(id=475,title=供暖器,difficulty=easy)
+func findRadius(houses []int, heaters []int) int {
+	sort.Ints(houses)
+	sort.Ints(heaters)
+	low, high := 0, 1000000000
+	for low < high {
+		mid := low + (high-low)/2
+		hIdx := 0
+		left, right := heaters[hIdx]-mid, heaters[hIdx]+mid
+		var i int
+		for i = 0; i < len(houses); {
+			if houses[i] < left {
+				break
+			} else if houses[i] > right {
+				hIdx++
+				if hIdx >= len(heaters) {
+					break
+				}
+				left, right = heaters[hIdx]-mid, heaters[hIdx]+mid
+				continue
+			}
+			i++
+		}
+		if i == len(houses) {
+			high = mid
+		} else {
+			low = mid + 1
+		}
+	}
+	return low
+}
 
 // LeetCode(id=400,title=第N个数字,difficulty=easy)
 func findNthDigit(n int) int {
