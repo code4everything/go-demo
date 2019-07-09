@@ -6,6 +6,15 @@ import (
 	"strconv"
 )
 
+// LeetCode(id=476,title=数字的补数,difficulty=easy)
+func findComplement(num int) int {
+	base := 1
+	for base < num {
+		base = (base << 1) + 1
+	}
+	return num ^ base
+}
+
 // LeetCode(id=475,title=供暖器,difficulty=easy)
 func findRadius(houses []int, heaters []int) int {
 	sort.Ints(houses)
