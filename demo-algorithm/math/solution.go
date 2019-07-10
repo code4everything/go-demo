@@ -2,9 +2,19 @@ package math
 
 import (
 	"fmt"
+	"math"
 	"sort"
 	"strconv"
 )
+
+// LeetCode(id=492,title=构造矩形,difficulty=easy)
+func constructRectangle(area int) []int {
+	high := int(math.Sqrt(float64(area)))
+	for area%high != 0 {
+		high--
+	}
+	return []int{area / high, high}
+}
 
 // LeetCode(id=476,title=数字的补数,difficulty=easy)
 func findComplement(num int) int {
