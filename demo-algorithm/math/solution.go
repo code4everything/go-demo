@@ -7,6 +7,23 @@ import (
 	"strconv"
 )
 
+// LeetCode(id=496,title=下一个更大元素 I,difficulty=easy)
+func nextGreaterElement(nums1 []int, nums2 []int) []int {
+	size := len(nums2) - 1
+	for i, v := range nums1 {
+		ng := -1
+		p := size
+		for nums2[p] != v {
+			if nums2[p] > v {
+				ng = nums2[p]
+			}
+			p--
+		}
+		nums1[i] = ng
+	}
+	return nums1
+}
+
 // LeetCode(id=492,title=构造矩形,difficulty=easy)
 func constructRectangle(area int) []int {
 	high := int(math.Sqrt(float64(area)))
