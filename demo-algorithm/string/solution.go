@@ -5,6 +5,36 @@ import (
 	"strings"
 )
 
+// LeetCode(id=500,title=键盘行,difficulty=easy)
+func findWords(words []string) []string {
+	lineMap := make(map[byte]int)
+	fillMap(lineMap, []byte{'q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p'}, 1)
+	fillMap(lineMap, []byte{'a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l'}, 2)
+	fillMap(lineMap, []byte{'z', 'x', 'c', 'v', 'b', 'n', 'm'}, 3)
+	ans := make([]string, 0)
+	for _, word := range words {
+		line, _ := lineMap[word[0]]
+		isInLine := true
+		for i := 1; i < len(word); i++ {
+			if line != lineMap[word[i]] {
+				isInLine = false
+				break
+			}
+		}
+		if isInLine {
+			ans = append(ans, word)
+		}
+	}
+	return ans
+}
+
+func fillMap(m map[byte]int, dict []byte, line int) {
+	for _, b := range dict {
+		m[b] = line
+		m[b-32] = line
+	}
+}
+
 // LeetCode(id=389,title=找不同,difficulty=easy)
 func findTheDifference(s string, t string) byte {
 	var sum1, sum2 int
