@@ -7,6 +7,11 @@ import (
 	"strconv"
 )
 
+// LeetCode(id=504,title=七进制数,difficulty=easy)
+func convertToBase7(num int) string {
+	return strconv.FormatInt(int64(num), 7)
+}
+
 // LeetCode(id=496,title=下一个更大元素 I,difficulty=easy)
 func nextGreaterElement(nums1 []int, nums2 []int) []int {
 	size := len(nums2) - 1
