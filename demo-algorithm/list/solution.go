@@ -5,6 +5,31 @@ import (
 	"strconv"
 )
 
+var mini []int
+
+// LeetCode(id=520,title=二叉搜索树的最小绝对差,difficulty=easy)
+func getMinimumDifference(root *TreeNode) int {
+	mini = make([]int, 0)
+	inorder(root)
+	diff := mini[1] - mini[0]
+	for i := 2; i < len(mini); i++ {
+		tmp := mini[i] - mini[i-1]
+		if tmp < diff {
+			diff = tmp
+		}
+	}
+	return diff
+}
+
+func inorder(node *TreeNode) {
+	if node == nil {
+		return
+	}
+	inorder(node.Left)
+	mini = append(mini, node.Val)
+	inorder(node.Right)
+}
+
 var treePath []string
 
 // LeetCode(id=257,title=二叉树的所有路径,difficulty=easy)
