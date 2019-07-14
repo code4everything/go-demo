@@ -7,6 +7,32 @@ import (
 	"strconv"
 )
 
+// LeetCode(id=532,title=数组中的K-diff数对,difficulty=easy)
+func findPairs(nums []int, k int) int {
+	used := make(map[int]int)
+	sort.Ints(nums)
+	ans, i, j := 0, 0, 1
+	for j < len(nums) {
+		diff := nums[j] - nums[i]
+		if diff < k {
+			j++
+		} else if diff > k {
+			i++
+			if i == j {
+				j++
+			}
+		} else {
+			if _, has := used[nums[i]]; !has {
+				ans++
+				used[nums[i]] = 1
+			}
+			i++
+			j++
+		}
+	}
+	return ans
+}
+
 // LeetCode(id=504,title=七进制数,difficulty=easy)
 func convertToBase7(num int) string {
 	return strconv.FormatInt(int64(num), 7)
