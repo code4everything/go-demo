@@ -7,6 +7,22 @@ import (
 
 var mini []int
 
+// LeetCode(id=538,title=把二叉搜索树转换为累加树,difficulty=easy)
+func convertBST(root *TreeNode) *TreeNode {
+	convertHelper(root, 0)
+	return root
+}
+
+func convertHelper(node *TreeNode, base int) int {
+	if node == nil {
+		return base
+	}
+	val := node.Val + convertHelper(node.Right, 0) + base
+	node.Val = val
+	val = convertHelper(node.Left, val)
+	return val
+}
+
 // LeetCode(id=520,title=二叉搜索树的最小绝对差,difficulty=easy)
 func getMinimumDifference(root *TreeNode) int {
 	mini = make([]int, 0)
