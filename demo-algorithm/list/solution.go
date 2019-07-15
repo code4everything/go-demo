@@ -17,10 +17,8 @@ func convertHelper(node *TreeNode, base int) int {
 	if node == nil {
 		return base
 	}
-	val := node.Val + convertHelper(node.Right, base)
-	node.Val = val
-	val = convertHelper(node.Left, val)
-	return val
+	node.Val += convertHelper(node.Right, base)
+	return convertHelper(node.Left, node.Val)
 }
 
 // LeetCode(id=520,title=二叉搜索树的最小绝对差,difficulty=easy)

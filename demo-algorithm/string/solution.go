@@ -5,6 +5,27 @@ import (
 	"strings"
 )
 
+// LeetCode(id=541,title=反转字符串 II,difficulty=easy)
+func reverseStr(s string, k int) string {
+	var begin, left int
+	buf := make([]rune, len(s))
+	for i, r := range s {
+		if i%(2*k) == 0 {
+			begin, left = i, k
+			if begin+left-1 >= len(s) {
+				left = len(s) - begin
+			}
+		}
+		if left > 0 {
+			buf[begin+left-1] = r
+			left--
+		} else {
+			buf[i] = r
+		}
+	}
+	return string(buf)
+}
+
 // LeetCode(id=500,title=键盘行,difficulty=easy)
 func findWords(words []string) []string {
 	lineMap := make(map[byte]int)
