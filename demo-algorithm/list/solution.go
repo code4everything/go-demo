@@ -17,7 +17,7 @@ func convertHelper(node *TreeNode, base int) int {
 	if node == nil {
 		return base
 	}
-	val := node.Val + convertHelper(node.Right, 0) + base
+	val := node.Val + convertHelper(node.Right, base)
 	node.Val = val
 	val = convertHelper(node.Left, val)
 	return val
