@@ -7,19 +7,30 @@ import (
 
 var mini []int
 
-// LeetCode(id=538,title=把二叉搜索树转换为累加树,difficulty=easy)
-func convertBST(root *TreeNode) *TreeNode {
-	convertHelper(root, 0)
-	return root
+// LeetCode(id=543,title=二叉树的直径,difficulty=easy)
+func diameterOfBinaryTree(root *TreeNode) int {
+	maxDiameter = 0
+	diameterHelper(root)
+	return maxDiameter
 }
 
-func convertHelper(node *TreeNode, base int) int {
+func diameterHelper(node *TreeNode) int {
 	if node == nil {
-		return base
+		return 0
 	}
-	node.Val += convertHelper(node.Right, base)
-	return convertHelper(node.Left, node.Val)
+	max := diameterHelper(node.Left)
+	right := diameterHelper(node.Right)
+	diameter := max + right
+	if diameter > maxDiameter {
+		maxDiameter = diameter
+	}
+	if right > max {
+		max = right
+	}
+	return max + 1
 }
+
+var maxDiameter int
 
 // LeetCode(id=520,title=二叉搜索树的最小绝对差,difficulty=easy)
 func getMinimumDifference(root *TreeNode) int {

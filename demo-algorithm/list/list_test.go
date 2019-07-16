@@ -15,3 +15,8 @@ func TestGetMinimumDifference(test *testing.T) {
 	node := &TreeNode{Val: 1, Right: &TreeNode{Val: 5, Left: &TreeNode{Val: 3}}}
 	fmt.Println(getMinimumDifference(node))
 }
+
+func TestDiameterOfBinaryTree(test *testing.T) {
+	node := &TreeNode{Val: 1, Right: &TreeNode{Val: 3}, Left: &TreeNode{Val: 2, Left: &TreeNode{Val: 4}, Right: &TreeNode{Val: 5}}}
+	diameterOfBinaryTree(node)
+}
