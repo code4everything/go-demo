@@ -5,7 +5,7 @@ import (
 	"strconv"
 )
 
-var mini []int
+var maxDiameter int
 
 // LeetCode(id=543,title=二叉树的直径,difficulty=easy)
 func diameterOfBinaryTree(root *TreeNode) int {
@@ -30,7 +30,7 @@ func diameterHelper(node *TreeNode) int {
 	return max + 1
 }
 
-var maxDiameter int
+var mini []int
 
 // LeetCode(id=520,title=二叉搜索树的最小绝对差,difficulty=easy)
 func getMinimumDifference(root *TreeNode) int {
