@@ -5,6 +5,31 @@ import (
 	"strconv"
 )
 
+// LeetCode(id=572,title=另一个树的子树,difficulty=easy)
+func isSubtree(s *TreeNode, t *TreeNode) bool {
+	if s == nil {
+		return false
+	}
+	sub := compareTree(s, t)
+	if sub {
+		return true
+	}
+	return isSubtree(s.Left, t) || isSubtree(s.Right, t)
+}
+
+func compareTree(s *TreeNode, t *TreeNode) bool {
+	if s == nil && t == nil {
+		return true
+	}
+	if s == nil || t == nil {
+		return false
+	}
+	if s.Val == t.Val {
+		return compareTree(s.Left, t.Left) && compareTree(s.Right, t.Right)
+	}
+	return false
+}
+
 var maxDiameter int
 
 // LeetCode(id=543,title=二叉树的直径,difficulty=easy)
