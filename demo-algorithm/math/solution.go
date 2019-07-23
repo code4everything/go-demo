@@ -7,6 +7,20 @@ import (
 	"strconv"
 )
 
+// LeetCode(id=575,title=分糖果,difficulty=easy)
+func distributeCandies(candies []int) int {
+	types := make(map[int]int)
+	for _, v := range candies {
+		types[v] = 1
+	}
+	max := len(candies) >> 1
+	size := len(types)
+	if size > max {
+		return max
+	}
+	return size
+}
+
 // LeetCode(id=532,title=数组中的K-diff数对,difficulty=easy)
 func findPairs(nums []int, k int) int {
 	used := make(map[int]int)
