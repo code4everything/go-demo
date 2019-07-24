@@ -7,6 +7,38 @@ import (
 	"strconv"
 )
 
+// LeetCode(id=581,title=最短无序连续子数组,difficulty=easy)
+func findUnsortedSubarray(nums []int) int {
+	copier := make([]int, len(nums))
+	copy(copier, nums)
+	sort.Ints(copier)
+	i, j := 0, len(nums)-1
+	head, last := false, false
+	for i < j {
+		if head && last {
+			break
+		}
+		if !head {
+			if nums[i] == copier[i] {
+				i++
+			} else {
+				head = true
+			}
+		}
+		if !last {
+			if nums[j] == copier[j] {
+				j--
+			} else {
+				last = true
+			}
+		}
+	}
+	if i >= j {
+		return 0
+	}
+	return j - i + 1
+}
+
 // LeetCode(id=575,title=分糖果,difficulty=easy)
 func distributeCandies(candies []int) int {
 	types := make(map[int]int)
