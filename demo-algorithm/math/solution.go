@@ -7,6 +7,46 @@ import (
 	"strconv"
 )
 
+// LeetCode(id=594,title=最长和谐子序列,difficulty=easy)
+func findLHS(nums []int) int {
+	lhs := make(map[int][]int)
+	unique := make(map[int]bool)
+	for _, v := range nums {
+		if lh, has := lhs[v]; has {
+			lh[0]++
+			lh[1]++
+		} else {
+			lh = make([]int, 2)
+			lh[0], lh[1] = 1, 1
+			lhs[v] = lh
+			unique[v] = true
+		}
+		less := v - 1
+		if lh, has := lhs[less]; has {
+			lh[1]++
+			unique[less] = false
+		}
+		great := v + 1
+		if lh, has := lhs[great]; has {
+			lh[0]++
+			unique[great] = false
+		}
+	}
+	max := 0
+	for k, v := range lhs {
+		if unique[k] {
+			continue
+		}
+		if v[0] > max {
+			max = v[0]
+		}
+		if v[1] > max {
+			max = v[1]
+		}
+	}
+	return max
+}
+
 // LeetCode(id=581,title=最短无序连续子数组,difficulty=easy)
 func findUnsortedSubarray(nums []int) int {
 	copier := make([]int, len(nums))
