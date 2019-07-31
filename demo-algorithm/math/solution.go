@@ -7,6 +7,21 @@ import (
 	"strconv"
 )
 
+// LeetCode(id=589,title=范围求和 II,difficulty=easy)
+func maxCount(m int, n int, ops [][]int) int {
+	minX := m
+	minY := n
+	for _, xy := range ops {
+		if xy[0] < minX {
+			minX = xy[0]
+		}
+		if xy[1] < minY {
+			minY = xy[1]
+		}
+	}
+	return minY * minX
+}
+
 // LeetCode(id=594,title=最长和谐子序列,difficulty=easy)
 func findLHS(nums []int) int {
 	lhs := make(map[int][]int)
