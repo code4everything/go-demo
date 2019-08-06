@@ -7,6 +7,30 @@ import (
 	"strconv"
 )
 
+// LeetCode(id=605,title=种花问题,difficulty=easy)
+func canPlaceFlowers(flowerbed []int, n int) bool {
+	i, size, feed := 0, len(flowerbed), false
+	high := size - 1
+	for i < size && n > 0 {
+		feed = flowerbed[i] == 0
+		if feed {
+			if i == 0 && i < high {
+				feed = flowerbed[i+1] == 0
+			} else if i < high {
+				feed = flowerbed[i-1] == 0 && flowerbed[i+1] == 0
+			} else if i != 0 {
+				feed = flowerbed[i-1] == 0
+			}
+		}
+		if feed {
+			flowerbed[i] = 1
+			n--
+		}
+		i++
+	}
+	return n == 0
+}
+
 // LeetCode(id=581,title=最短无序连续子数组,difficulty=easy)
 func findUnsortedSubarray(nums []int) int {
 	copier := make([]int, len(nums))
