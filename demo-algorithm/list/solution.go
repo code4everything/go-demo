@@ -5,6 +5,21 @@ import (
 	"strconv"
 )
 
+// LeetCode(id=606,title=根据二叉树创建字符串,difficulty=easy)
+func tree2str(t *TreeNode) string {
+	if t == nil {
+		return ""
+	}
+	s := strconv.Itoa(t.Val)
+	if t.Left != nil || t.Right != nil {
+		s += "(" + tree2str(t.Left) + ")"
+		if t.Right != nil {
+			s += "(" + tree2str(t.Right) + ")"
+		}
+	}
+	return s
+}
+
 // LeetCode(id=572,title=另一个树的子树,difficulty=easy)
 func isSubtree(s *TreeNode, t *TreeNode) bool {
 	if s == nil {
