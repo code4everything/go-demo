@@ -7,6 +7,22 @@ import (
 	"strconv"
 )
 
+// LeetCode(id=633,title=平方数之和,difficulty=easy)
+func judgeSquareSum(c int) bool {
+	left, right := 0, int(math.Sqrt(float64(c)))
+	for left <= right {
+		val := left*left + right*right
+		if val == c {
+			return true
+		} else if val > c {
+			right--
+		} else {
+			left--
+		}
+	}
+	return false
+}
+
 // LeetCode(id=628,title=三个数的最大乘积,difficulty=easy)
 func maximumProduct(nums []int) int {
 	max1, max2, max3 := -1001, -1001, -1001
