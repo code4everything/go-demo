@@ -7,6 +7,24 @@ import (
 	"strconv"
 )
 
+// LeetCode(id=643,title=子数组最大平均数 I,difficulty=easy)
+func findMaxAverage(nums []int, k int) float64 {
+	i, sum, size := 0, 0, len(nums)
+	for i < k {
+		sum += nums[i]
+		i++
+	}
+	max := sum
+	for i < size {
+		sum = sum - nums[i-k] + nums[i]
+		if sum > max {
+			max = sum
+		}
+		i++
+	}
+	return float64(max) / float64(k)
+}
+
 // LeetCode(id=633,title=平方数之和,difficulty=easy)
 func judgeSquareSum(c int) bool {
 	left, right := 0, int(math.Sqrt(float64(c)))
