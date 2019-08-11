@@ -7,6 +7,24 @@ import (
 	"strconv"
 )
 
+// LeetCode(id=645,title=错误的集合,difficulty=easy)
+func findErrorNums(nums []int) []int {
+	size := len(nums) + 1
+	bucket := make([]int, size)
+	for _, v := range nums {
+		bucket[v]++
+	}
+	ans := make([]int, 2)
+	for i := 1; i < size; i++ {
+		if bucket[i] == 0 {
+			ans[1] = i
+		} else if bucket[i] == 2 {
+			ans[0] = i
+		}
+	}
+	return ans
+}
+
 // LeetCode(id=643,title=子数组最大平均数 I,difficulty=easy)
 func findMaxAverage(nums []int, k int) float64 {
 	i, sum, size := 0, 0, len(nums)
