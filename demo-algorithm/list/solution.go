@@ -5,6 +5,34 @@ import (
 	"strconv"
 )
 
+var bst []int
+
+// LeetCode(id=653,title=两数之和 IV - 输入 BST,difficulty=easy)
+func findTarget(root *TreeNode, k int) bool {
+	bst = make([]int, 0)
+	bst2Array(root)
+	for i, j := 0, len(bst)-1; i < j; {
+		sum := bst[i] + bst[j]
+		if sum == k {
+			return true
+		} else if sum > k {
+			j--
+		} else {
+			i++
+		}
+	}
+	return false
+}
+
+func bst2Array(node *TreeNode) {
+	if node == nil {
+		return
+	}
+	bst2Array(node.Left)
+	bst = append(bst, node.Val)
+	bst2Array(node.Right)
+}
+
 // LeetCode(id=617,title=合并二叉树,difficulty=easy)
 func mergeTrees(t1 *TreeNode, t2 *TreeNode) *TreeNode {
 	if t1 != nil && t2 != nil {
