@@ -5,6 +5,23 @@ import (
 	"strings"
 )
 
+// LeetCode(id=657,title=机器人能否返回原点,difficulty=easy)
+func judgeCircle(moves string) bool {
+	x, y := 0, 0
+	for _, c := range moves {
+		if c == 'U' {
+			y++
+		} else if c == 'D' {
+			y--
+		} else if c == 'L' {
+			x--
+		} else {
+			x++
+		}
+	}
+	return x == 0 && y == 0
+}
+
 // LeetCode(id=541,title=反转字符串 II,difficulty=easy)
 func reverseStr(s string, k int) string {
 	var begin, left int
