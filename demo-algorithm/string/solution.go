@@ -1,9 +1,32 @@
 package string
 
 import (
+	"math"
 	"sort"
 	"strings"
 )
+
+// LeetCode(id=665,title=非递减数列,difficulty=easy)
+func checkPossibility(nums []int) bool {
+	desc, compare, base := 0, nums[0], math.MinInt32
+	for i := 1; i < len(nums); i++ {
+		if compare > nums[i] {
+			desc++
+			if nums[i] < base {
+				base = compare
+			}
+		} else {
+			if compare > base {
+				base = compare
+			}
+			if base > nums[i] {
+				return false
+			}
+		}
+		compare = nums[i]
+	}
+	return desc < 2
+}
 
 // LeetCode(id=657,title=机器人能否返回原点,difficulty=easy)
 func judgeCircle(moves string) bool {
