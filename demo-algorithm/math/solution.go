@@ -7,7 +7,29 @@ import (
 	"strconv"
 )
 
-// LeetCode(id=645,title=错误的集合,difficulty=easy)
+// LeetCode(id=674,title=最长连续递增序列,difficulty[2,2,2,2,2]=easy)
+func findLengthOfLCIS(nums []int) int {
+	if len(nums) == 0 {
+		return 0
+	}
+	max, tmp := 1, 1
+	for i := 1; i < len(nums); i++ {
+		if nums[i] > nums[i-1] {
+			tmp++
+		} else {
+			if tmp > max {
+				max = tmp
+			}
+			tmp = 1
+		}
+	}
+	if tmp > max {
+		return tmp
+	}
+	return max
+}
+
+// LeetCode(id=645,title=错误的集合,difficulty[2,2,2,2,2]=easy)
 func findErrorNums(nums []int) []int {
 	size := len(nums) + 1
 	bucket := make([]int, size)
