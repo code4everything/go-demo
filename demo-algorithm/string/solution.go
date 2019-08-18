@@ -6,6 +6,25 @@ import (
 	"strings"
 )
 
+// LeetCode(id=680,title=验证回文字符串 Ⅱ,difficulty=easy)
+func validPalindrome(s string) bool {
+	var helper func(s string, left, right, delete int) bool
+	helper = func(s string, left, right, delete int) bool {
+		for left < right {
+			if s[left] == s[right] {
+				left++
+				right--
+			} else if delete > 0 {
+				return false
+			} else {
+				return helper(s, left+1, right, delete+1) || helper(s, left, right-1, delete+1)
+			}
+		}
+		return true
+	}
+	return helper(s, 0, len(s)-1, 0)
+}
+
 // LeetCode(id=665,title=非递减数列,difficulty=easy)
 func checkPossibility(nums []int) bool {
 	desc, compare, base := 0, nums[0], math.MinInt32
