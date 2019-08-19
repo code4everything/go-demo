@@ -6,6 +6,36 @@ import (
 	"strconv"
 )
 
+// LeetCode(id=687,title=最长同值路径,difficulty=easy)
+func longestUnivaluePath(root *TreeNode) int {
+	ans := 0
+	var helper func(node *TreeNode) int
+	helper = func(node *TreeNode) int {
+		if node == nil {
+			return 0
+		}
+		left, right := helper(node.Left), helper(node.Right)
+		leftSize, rightSize := 0, 0
+		if node.Left != nil && node.Left.Val == node.Val {
+			leftSize += left + 1
+		}
+		if node.Right != nil && node.Right.Val == node.Val {
+			rightSize += right + 1
+		}
+
+		max := leftSize + rightSize
+		if max > ans {
+			ans = max
+		}
+		if leftSize > rightSize {
+			return leftSize
+		}
+		return rightSize
+	}
+	helper(root)
+	return ans
+}
+
 // LeetCode(id=671,title=二叉树中第二小的节点,difficulty=easy)
 func findSecondMinimumValue(root *TreeNode) int {
 	if root == nil || root.Left == nil || root.Right == nil {
