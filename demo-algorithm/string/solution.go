@@ -6,6 +6,18 @@ import (
 	"strings"
 )
 
+// LeetCode(id=686,title=重复叠加字符串匹配,difficulty=easy)
+func repeatedStringMatch(A string, B string) int {
+	s := A
+	for i := 1; i <= len(B)/len(A)+2; i++ {
+		if strings.Contains(s, B) {
+			return i
+		}
+		s += A
+	}
+	return -1
+}
+
 // LeetCode(id=680,title=验证回文字符串 Ⅱ,difficulty=easy)
 func validPalindrome(s string) bool {
 	var helper func(s string, left, right, delete int) bool
