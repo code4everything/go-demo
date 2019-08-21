@@ -7,6 +7,12 @@ import (
 	"strconv"
 )
 
+// LeetCode(id=693,title=交替位二进制数,difficulty[2,2,2,2,2]=easy)
+func hasAlternatingBits(n int) bool {
+	k := int64(n ^ (n >> 1))
+	return k&(k+1) == 0
+}
+
 // LeetCode(id=674,title=最长连续递增序列,difficulty[2,2,2,2,2]=easy)
 func findLengthOfLCIS(nums []int) int {
 	if len(nums) == 0 {
