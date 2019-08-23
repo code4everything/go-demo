@@ -7,6 +7,31 @@ import (
 	"strconv"
 )
 
+// LeetCode(id=697,title=数组的度,difficulty[2,2,2,2,2]=easy)
+func findShortestSubArray(nums []int) int {
+	starts, ends, times := make([]int, 50000), make([]int, 50000), make([]int, 50000)
+	for i, v := range nums {
+		if starts[v] == 0 {
+			starts[v] = i + 1
+		}
+		ends[v] = i + 1
+		times[v]++
+	}
+	max, minLen := 1, 49999
+	for i, v := range times {
+		if v >= max {
+			tmp := ends[i] - starts[i]
+			if v > max {
+				max = v
+				minLen = tmp
+			} else if tmp < minLen {
+				minLen = tmp
+			}
+		}
+	}
+	return minLen + 1
+}
+
 // LeetCode(id=693,title=交替位二进制数,difficulty[2,2,2,2,2]=easy)
 func hasAlternatingBits(n int) bool {
 	k := int64(n ^ (n >> 1))
