@@ -7,7 +7,18 @@ import (
 	"strconv"
 )
 
-// LeetCode(id=697,title=数组的度,difficulty[2,2,2,2,2]=easy)
+// LeetCode(id=717,title=1比特与2比特字符,difficulty=easy)
+func isOneBitCharacter(bits []int) bool {
+	i, size := 0, len(bits)
+	for ; i < size-1; i++ {
+		if bits[i] == 1 {
+			i++
+		}
+	}
+	return i < size
+}
+
+// LeetCode(id=697,title=数组的度,difficulty=easy)
 func findShortestSubArray(nums []int) int {
 	starts, ends, times := make([]int, 50000), make([]int, 50000), make([]int, 50000)
 	for i, v := range nums {
@@ -32,13 +43,13 @@ func findShortestSubArray(nums []int) int {
 	return minLen + 1
 }
 
-// LeetCode(id=693,title=交替位二进制数,difficulty[2,2,2,2,2]=easy)
+// LeetCode(id=693,title=交替位二进制数,difficulty=easy)
 func hasAlternatingBits(n int) bool {
 	k := int64(n ^ (n >> 1))
 	return k&(k+1) == 0
 }
 
-// LeetCode(id=674,title=最长连续递增序列,difficulty[2,2,2,2,2]=easy)
+// LeetCode(id=674,title=最长连续递增序列,difficulty=easy)
 func findLengthOfLCIS(nums []int) int {
 	if len(nums) == 0 {
 		return 0
@@ -60,7 +71,7 @@ func findLengthOfLCIS(nums []int) int {
 	return max
 }
 
-// LeetCode(id=645,title=错误的集合,difficulty[2,2,2,2,2]=easy)
+// LeetCode(id=645,title=错误的集合,difficulty=easy)
 func findErrorNums(nums []int) []int {
 	size := len(nums) + 1
 	bucket := make([]int, size)
