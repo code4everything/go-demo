@@ -6,6 +6,40 @@ import (
 	"strings"
 )
 
+// LeetCode(id=748,title=最短完整词,difficulty=easy)
+func shortestCompletingWord(licensePlate string, words []string) string {
+	licensePlate = strings.ToLower(licensePlate)
+	licMap := make([]int, 26)
+	for _, v := range licensePlate {
+		idx := v - 'a'
+		if idx >= 0 && idx < 26 {
+			licMap[idx]++
+		}
+	}
+	letterCnt := 0
+	for _, v := range licMap {
+		letterCnt += v
+	}
+	word, minSize := "", math.MaxInt32
+	for _, v := range words {
+		lic, cnt := make([]int, 26), letterCnt
+		copy(lic, licMap)
+		for _, c := range v {
+			idx := c - 'a'
+			if lic[idx]--; lic[idx] >= 0 {
+				cnt--
+			}
+		}
+		if cnt == 0 {
+			if len(v) < minSize {
+				minSize = len(v)
+				word = v
+			}
+		}
+	}
+	return word
+}
+
 // LeetCode(id=686,title=重复叠加字符串匹配,difficulty=easy)
 func repeatedStringMatch(A string, B string) int {
 	s := A
