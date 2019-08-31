@@ -7,6 +7,19 @@ import (
 	"strconv"
 )
 
+// LeetCode(id=754,title=到达终点数字,difficulty=easy)
+func reachNumber(target int) int {
+	if target < 0 {
+		target = -target
+	}
+	sum, res := 0, 0
+	for target > sum || (sum-target)%2 != 0 {
+		res++
+		sum += res
+	}
+	return res
+}
+
 // LeetCode(id=717,title=1比特与2比特字符,difficulty=easy)
 func isOneBitCharacter(bits []int) bool {
 	i, size := 0, len(bits)
