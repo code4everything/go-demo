@@ -7,6 +7,26 @@ import (
 	"strconv"
 )
 
+// LeetCode(id=746,title=使用最小花费爬楼梯,difficulty=easy)
+func minCostClimbingStairs(cost []int) int {
+	size := len(cost)
+	dp := make([]int, size)
+	dp[0], dp[1] = cost[0], cost[1]
+	for i := 2; i < size; i++ {
+		dp[i] = dp[i-1]
+		tmp := dp[i-2]
+		if tmp < dp[i] {
+			dp[i] = tmp
+		}
+		dp[i] += cost[i]
+	}
+	min, tmp := dp[size-1], dp[size-2]
+	if tmp < min {
+		min = tmp
+	}
+	return min
+}
+
 // LeetCode(id=754,title=到达终点数字,difficulty=easy)
 func reachNumber(target int) int {
 	if target < 0 {
