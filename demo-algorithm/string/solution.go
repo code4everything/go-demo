@@ -3,33 +3,63 @@ package string
 import (
 	"math"
 	"sort"
+	"strconv"
 	"strings"
 )
 
+// LeetCode(id=811,title=子域名访问计数,difficulty=easy)
+func subdomainVisits(cpdomains []string) []string {
+	var helper func(domain string, cnt int)
+	domainMap := make(map[string]int)
+	helper = func(domain string, cnt int) {
+		_, has := domainMap[domain]
+		if has {
+			domainMap[domain] += cnt
+		} else {
+			domainMap[domain] = cnt
+		}
+		idx := strings.Index(domain, ".") + 1
+		if idx > 0 {
+			helper(domain[idx:], cnt)
+		}
+	}
+	for _, domain := range cpdomains {
+		split := strings.Split(domain, " ")
+		cnt, _ := strconv.Atoi(split[0])
+		helper(split[1], cnt)
+	}
+	ans, i := make([]string, len(domainMap)), 0
+	for k, v := range domainMap {
+		ans[i] = strconv.Itoa(v) + " " + k
+		i++
+	}
+	return ans
+}
+
 // LeetCode(id=796,title=旋转字符串,difficulty=easy)
 func rotateString(A string, B string) bool {
-    lenA := len(A)
-        lenB := len(B)
-        if lenA != lenB{
-            return false
-        }
-        if lenA == 0{
-            return true
-        }
-        for i:= 0; i < lenA; i++{
-            temp, j := i, 0
-            for j < lenB{
-                if A[temp%lenA] != B[j]{
-                    break
-                }
-                temp++
-                j++
-            }
-            if j == lenB{
-                return true
-            }
-        }
-    return false
+	lenA := len(A)
+	lenB := len(B)
+	if lenA != lenB {
+		return false
+	}
+	if lenA == 0 {
+		return true
+	}
+	for i := 0; i < lenA; i++ {
+		temp, j := i, 0
+		for j < lenB {
+			if A[temp%lenA] != B[j] {
+				break
+			}
+			temp++
+			j++
+		}
+		if j == lenB {
+			return true
+		}
+	}
+	return false
 }
 
 // LeetCode(id=748,title=最短完整词,difficulty=easy)
