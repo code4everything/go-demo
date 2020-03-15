@@ -7,6 +7,23 @@ import (
 	"strings"
 )
 
+// LeetCode(id=1071,title=字符串的最大公因子,difficulty=easy)
+func gcdOfStrings(str1 string, str2 string) string {
+	if str1+str2 != str2+str1 {
+		return ""
+	}
+
+	var gcd func(a int, b int) int
+	gcd = func(a int, b int) int {
+		if b == 0 {
+			return a
+		}
+		return gcd(b, a%b)
+	}
+
+	return str1[:gcd(len(str1), len(str2))]
+}
+
 // LeetCode(id=811,title=子域名访问计数,difficulty=easy)
 func subdomainVisits(cpdomains []string) []string {
 	var helper func(domain string, cnt int)

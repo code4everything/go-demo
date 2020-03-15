@@ -33,7 +33,7 @@ type User struct {
 }
 
 func (u User) String() string {
-	us, err := json.Marshal(u)
+	us, err := json.MarshalIndent(u, "", "\t")
 	if err == nil {
 		return string(us)
 	}
