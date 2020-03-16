@@ -7,6 +7,18 @@ import (
 	"strings"
 )
 
+// LeetCode(id=392,title=判断子序列,difficulty=easy)
+func isSubsequence(s string, t string) bool {
+	p1, p2 := 0, 0
+	for p1 < len(s) && p2 < len(t) {
+		if s[p1] == t[p2] {
+			p1++
+		}
+		p2++
+	}
+	return p1 == len(s)
+}
+
 // LeetCode(id=1071,title=字符串的最大公因子,difficulty=easy)
 func gcdOfStrings(str1 string, str2 string) string {
 	if str1+str2 != str2+str1 {
