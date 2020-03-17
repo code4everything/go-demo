@@ -7,6 +7,39 @@ import (
 	"strings"
 )
 
+// LeetCode(id=720,title=词典中最长的单词,difficulty=easy)
+func longestWord(words []string) string {
+	if len(words) == 1 {
+		if len(words[0]) > 1 {
+			return ""
+		}
+		return words[0]
+	}
+	sort.Strings(words)
+	longest := ""
+	last := ""
+	set := make(map[string]int)
+	for i := range words {
+		if len(words[i]) == 1 {
+			if longest == "" {
+				longest = words[i]
+			}
+			last = words[i]
+			set[last] = 0
+		} else if words[i][0:len(words[i])-1] == last {
+			if len(words[i]) > len(longest) {
+				longest = words[i]
+			}
+			last = words[i]
+			set[last] = 0
+		} else if _, ok := set[words[i][0:len(words[i])-1]]; ok {
+			last = words[i]
+			set[last] = 0
+		}
+	}
+	return longest
+}
+
 // LeetCode(id=392,title=判断子序列,difficulty=easy)
 func isSubsequence(s string, t string) bool {
 	p1, p2 := 0, 0
